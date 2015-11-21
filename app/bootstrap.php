@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 
 $startTime = microtime(true);
+date_default_timezone_set( 'Europe/London' );
 
 // register vendor auto loaders
 require __DIR__ . '/../vendor/autoload.php';
