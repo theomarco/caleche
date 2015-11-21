@@ -21,13 +21,12 @@ All commands relative `caleche` directory.
 ### Install & Get Dependencies
 
 ```bash
-npm install
-composer install 
+php composer.phar install
 
 #If that doesn't work try
-composer.sh install
 
 curl -sS https://getcomposer.org/installer | php
+php composer.phar install
 
 ```
 
