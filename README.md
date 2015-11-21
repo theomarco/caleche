@@ -5,7 +5,7 @@ API for Taxi Service
 
 ## Getting Started
 
-Must have PHP machine setup for development PHP 5.3.x. A `DocumentRoot` pointed to `silex-api-boilerplate/web`.
+Must have PHP machine setup for development PHP 5.3.x. (php -v)
 
 ### Installation
 
@@ -13,16 +13,23 @@ To get the source. Clone this repository locally
 
 ```bash
 # clone and name application
-https://github.com/theomarco/caleche.git
+git clone https://github.com/theomarco/caleche.git
 cd caleche
 ```
 All commands relative `caleche` directory.
 
-### Get Dependencies
+### Install & Get Dependencies
 
 ```bash
-composer.sh install
+php composer.phar install
+
+#If that doesn't work try
+
+curl -sS https://getcomposer.org/installer | php
+php composer.phar install
+
 ```
+
 
 ### Set Permissions
 

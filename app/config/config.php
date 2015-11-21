@@ -4,7 +4,7 @@
  */
 
 return array(
-    'name' => 'myapi',
+    'name' => 'caleche',
     'version' => 1,
     'sourceVersion' => '0.0.1',
     'environment' => 'prod',
