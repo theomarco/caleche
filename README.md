@@ -18,11 +18,19 @@ cd caleche
 ```
 All commands relative `caleche` directory.
 
-### Get Dependencies
+### Install & Get Dependencies
 
 ```bash
+npm install
+composer install 
+
+#If that doesn't work try
 composer.sh install
+
+curl -sS https://getcomposer.org/installer | php
+
 ```
+
 
 ### Set Permissions
 
