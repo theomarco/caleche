@@ -18,6 +18,6 @@ return array(
     ),
     'routes' => array(
         'Api\DefaultApi\Routes',
-        'Api\TestApi\Routes',
+        'Api\Caleche\Routes',
     ),
 );
