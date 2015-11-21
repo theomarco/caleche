@@ -1,6 +1,6 @@
 <?php
 
-namespace Api\TestApi;
+namespace Api\Caleche;
 
 class Routes extends \Api\Routes
 {
@@ -13,7 +13,7 @@ class Routes extends \Api\Routes
         // $this->getApp()->get('/test/users/{id}',    'Api\TestApi\Controllers\UserController::get');
         // $this->getApp()->put('/test/users/{id}',    'Api\TestApi\Controllers\UserController::put');
         // $this->getApp()->delete('/test/users/{id}', 'Api\TestApi\Controllers\UserController::delete');
-        $this->getApp()->post('/v1/request', 'Api\TestApi\Controllers\CalecheController::request');
+        $this->getApp()->post('/v1/request', 'Api\Caleche\Controllers\CalecheController::request');
 
     }
 
