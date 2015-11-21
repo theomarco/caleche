@@ -27,13 +27,27 @@ if ($envMode = getenv('APP_ENV')) {
     $envMode = 'prod';
 }
 
+	//Config for Uber
+	$uberConfig['access_token'] = getenv('Uber_Access_Token');
+    $uberConfig['server_token'] = getenv('Uber_Server_Token');
+    $uberConfig['client_id'] = getenv('Uber_Client_Id');
+    $uberConfig['app_id'] = getenv('Uber_App_Id');
+
+	if ($envMode = getenv('APP_ENV')) {
+		$uberConfig['use_sandbox'] = true;
+	} else {
+	    $uberConfig['use_sandbox'] = false;
+	}
+
 // init and set app settings
 $app = new Application(array(
     'environment'   => $envMode,
     'debug'         => $config['debug'],
     'config'        => $config,
-    'startTime'     => $startTime,
+    'startTime'     => $startTime
 ));
+
+$app['uber_config']	= $uberConfig;
 
 // custom default errors
 require __DIR__ . '/config/errors.php';

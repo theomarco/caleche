@@ -6,18 +6,28 @@ namespace Api\Caleche\Controllers;
 
 use Api\Application;
 use Api\Controller;
-use Api\Caleche\Partners\Uber\Uber;
+use Api\Caleche\Partners\Uber\Uber as UberClient;
 
 class CalecheController extends Controller
 {
 
-    public function request(Application $app)
-    {
-        $users = array();
+    private $uber_client;
 
-        for ($i=1;$i<=10;$i++) {
-            $users[] = array('id' => $i, 'name' => 'gumby'.$i);
+    public function request(Application $app, $params)
+    {
+        if(!isset($uber_client)){
+            $config['access_token'] = $app['uber_config']['access_token'];
+            $config['server_token'] = $app['uber_config']['server_token'];
+            $config['client_id'] = $$app['uber_config']['client_id'];
+            $config['app_id'] = $app['uber_config']['app_id'];
+
+            $uber_client = new UberClient($config);
         }
+
+        var_dump($params);
+        exit();
+
+        $uber_client->getPriceEstimates($params)
 
         return $app->json($users);
     }
