@@ -5,7 +5,7 @@ API for Taxi Service
 
 ## Getting Started
 
-Must have PHP machine setup for development PHP 5.3.x. 
+Must have PHP machine setup for development PHP 5.3.x. (php -v)
 
 ### Installation
 
@@ -13,7 +13,7 @@ To get the source. Clone this repository locally
 
 ```bash
 # clone and name application
-https://github.com/theomarco/caleche.git
+git clone https://github.com/theomarco/caleche.git
 cd caleche
 ```
 All commands relative `caleche` directory.

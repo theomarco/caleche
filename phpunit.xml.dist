@@ -19,7 +19,7 @@
     </testsuites>
 
     <php>
-        <env name="AIS_MODE" value="phpunit"/>
+        <env name="APP_ENV" value="phpunit"/>
     </php>
 
 </phpunit>

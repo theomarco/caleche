@@ -17,7 +17,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $config =  include __DIR__ . '/config/config.php';
 
 // overwrite config based on environment
-if ($envMode = getenv('AIS_MODE')) {
+if ($envMode = getenv('APP_ENV')) {
     $configOverride = __DIR__ . "/config/{$envMode}/config.php";
     if (file_exists($configOverride)) {
         $config = ((array) include $configOverride) + $config;
