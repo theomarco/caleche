@@ -47,6 +47,8 @@ $app = new Application(array(
 ));
 
 $app['uber_config']	= $uberConfig;
+$app['citymapper_key'] = getenv('Citymapper_key');
+$app['hailo_key'] = getenv('Hailo_key');
 
 // custom default errors
 require __DIR__ . '/config/errors.php';

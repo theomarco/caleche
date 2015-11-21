@@ -11,15 +11,16 @@ use GuzzleHttp\Client as HttpClient;
 class HailoClient
 {
 
-    private $access_token = "iJgAldWT75/xfN7UrhupbKU+DN7foAU3I6uyMiGxJ1PLcWCpWbHyjP7E2ybH+BMmYo4Gh9i7ABbi7ZnYL8Dxf4NUiRaHwl0YKwp97+bR1ZFmmH1Rovc5vJzSD4ASfonh2KMFsv6ERZUwHcOBbUCQDjPjvoOiNyg/k9v+Ab8N2q4LUEY9fQwu3N1djz/LFGxamw+zoK6xMlYHyOVkKob93A==";
+    private $access_token ;
     private $http_client;
 
     private $api_url ='https://api.hailoapp.com/';
 
     private $locale = 'en_GB';
 
-    public function __construct(){
+    public function __construct($key){
 
+        $this->access_token = $key;
         $this->http_client = new HttpClient;
     }
 
@@ -90,7 +91,7 @@ class HailoClient
 
 
     /**
-     * Makes a request to the Uber API and returns the response
+     * Makes a request to the HAilo API and returns the response
      *
      * @param    string $verb       The Http verb to use
      * @param    string $path       The path of the APi after the domain
@@ -135,9 +136,5 @@ class HailoClient
         }
         return $config;
     }
-
-
-
-
 
 }

@@ -9,6 +9,7 @@ use Api\Controller;
 use Api\Caleche\Partners\UberClient;
 use Api\Caleche\Partners\HailoClient;
 use Api\Caleche\Partners\TaxicodeClient;
+use Api\Caleche\Partners\CitymapperClient;
 use \DateTime;
 
 class CalecheController extends Controller
@@ -31,21 +32,31 @@ class CalecheController extends Controller
 
         if(!isset($hailo_client)){
 
-            $hailo_client = new HailoClient();
+            $hailo_client = new HailoClient($app['hailo_key']);
         }
 
         if(!isset($taxicode_client)){
             $taxicode_client = new TaxicodeClient();
         }
 
+        if(!isset($citymapper_client)){
+            $citymapper_client = new CitymapperClient($app['citymapper_key']);
+        }
+
         $data = json_decode($app['request']->getContent());
-        //UBER
+        
+        //Citymapper
+
         $location = array(
             'start_latitude'=> $data->start_latitude,
             'start_longitude' => $data->start_longitude,
             'end_latitude' => $data->end_latitude,
             'end_longitude'=> $data->end_longitude
         );
+
+        $citymapper = $citymapper_client->getTimeTravel($location);
+
+        //UBER
 
         $prices = $uber_client->getPriceEstimates($location);
 
@@ -92,7 +103,9 @@ class CalecheController extends Controller
         //HAAAACK! CHANGE!!!
         $results['cheapest'] = isset($price_sorted[0]->price) ? $price_sorted[0] : $price_sorted[1] ;
         $results['closest'] = isset($time_sorted[0]->eta) ? $time_sorted[0] : $time_sorted[1] ;
-        $results['others'] = array_slice($price_sorted, 1);
+        $results['others_price'] = isset($price_sorted[0]->price)? array_slice($price_sorted, 1) : array_slice($price_sorted, 2);
+        $results['others_time'] = isset($time_sorted[0]->price)? array_slice($time_sorted, 1) : array_slice($time_sorted, 2);
+        $results['citymapper'] = $citymapper;
 
         return $app->json($results);
     }
