@@ -107,11 +107,12 @@ class UberClient
             foreach ($prices->prices as $cab) {
                 if($time->product_id == $cab->product_id){
                     $cab->time_estimate = $time->estimate;
+                    $cab->type = 'uber';
                 }
             }
         }
 
-        return $prices;
+        return $prices->prices;
     }
 
      /**
@@ -208,26 +209,6 @@ class UberClient
             'Authorization' => $this->getAuthorizationHeader(),
             'Accept-Language' => $this->locale,
         ];
-    }
-
-
-
-
-    /**
-     * Return stats info API.
-     *
-     * @param Application $app
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function info(Application $app)
-    {
-        return $app->json(array(
-            'name'      => $app['config']['name'],
-            'version'   => $app['config']['version'],
-            'source'    => $app['config']['sourceVersion'],
-            'env'       => $app['environment'],
-            'debug'     => $app['debug'],
-        ));
     }
 
 }
