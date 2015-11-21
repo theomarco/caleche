@@ -5,7 +5,7 @@ API for Taxi Service
 
 ## Getting Started
 
-Must have PHP machine setup for development PHP 5.3.x. A `DocumentRoot` pointed to `silex-api-boilerplate/web`.
+Must have PHP machine setup for development PHP 5.3.x. 
 
 ### Installation
 
