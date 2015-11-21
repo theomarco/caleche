@@ -3,12 +3,20 @@
  * Default controller for base endpoints.
  */
 
-namespace Api\DefaultApi\Controllers;
+namespace Api\Caleche\Partners;
 
 use Api\Application;
+use GuzzleHttp\Client;
 
 class UberWrapper 
 {
+
+    public function requestEstimate($lat, $lon){
+        $r = $client->request('POST', 'http://httpbin.org//v1/requests/estimate', [
+            'json' => ['foo' => 'bar']
+        ]);
+    }
+
 
     /**
      * Return stats info API.

@@ -9,10 +9,12 @@ class Routes extends \Api\Routes
      */
     public function register()
     {
-        $this->getApp()->get('/test/users',         'Api\TestApi\Controllers\UserController::all');
-        $this->getApp()->get('/test/users/{id}',    'Api\TestApi\Controllers\UserController::get');
-        $this->getApp()->put('/test/users/{id}',    'Api\TestApi\Controllers\UserController::put');
-        $this->getApp()->delete('/test/users/{id}', 'Api\TestApi\Controllers\UserController::delete');
+        // $this->getApp()->get('/test/users',         'Api\TestApi\Controllers\UserController::all');
+        // $this->getApp()->get('/test/users/{id}',    'Api\TestApi\Controllers\UserController::get');
+        // $this->getApp()->put('/test/users/{id}',    'Api\TestApi\Controllers\UserController::put');
+        // $this->getApp()->delete('/test/users/{id}', 'Api\TestApi\Controllers\UserController::delete');
+        $this->getApp()->post('/v1/request', 'Api\TestApi\Controllers\CalecheController::request');
+
     }
 
 }

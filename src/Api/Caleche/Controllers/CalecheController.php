@@ -2,15 +2,16 @@
 /**
  * Basic sample of a RESTful endpoint using static data.
  */
-namespace Api\TestApi\Controllers;
+namespace Api\Caleche\Controllers;
 
 use Api\Application;
 use Api\Controller;
+use Api\Caleche\Partners\Uber\Uber;
 
 class CalecheController extends Controller
 {
 
-    public function all(Application $app)
+    public function request(Application $app)
     {
         $users = array();
 

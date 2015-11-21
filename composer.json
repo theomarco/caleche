@@ -2,7 +2,8 @@
     "require": {
         "silex/silex": "1.*",
         "monolog/monolog": "1.6.*",
-        "guzzlehttp/guzzle":"@stable"
+        "guzzlehttp/guzzle":"@stable",
+        "stevenmaguire/uber-php" : "@stable"
     },
     "require-dev" : {
         "phpunit/phpunit": "3.7.x",
