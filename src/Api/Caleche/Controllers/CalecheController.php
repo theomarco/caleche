@@ -26,21 +26,31 @@ class CalecheController extends Controller
 
         $data = json_decode($app['request']->getContent());
 
-
         $location = array(
             'start_latitude'=> $data->start_latitude,
             'start_longitude' => $data->start_longitude,
             'end_latitude' => $data->end_latitude,
             'end_longitude'=> $data->end_longitude
         );
-        $res = $uber_client->getPriceEstimates($location);
+        $prices = $uber_client->getPriceEstimates($location);
 
-        return $app->json($res);
+        $start_location = array(
+            'start_latitude'=> $data->start_latitude,
+            'start_longitude' => $data->start_longitude
+        );
+
+        $times = $uber_client->getTimeEstimates($start_location);
+
+        $response = $uber_client->mixPriceTimeEstimates($times, $prices);
+
+        return $app->json($response);
     }
 
     public function get(Application $app, $id)
     {
         return $app->json(array('id' => (int)$id, 'name' => 'gumby'.$id));
     }
+
+
 
 }

@@ -48,6 +48,72 @@ class UberClient
         return $this->request('get', 'estimates/price', $location);
     }
 
+
+    /**
+     * The Time Estimates endpoint returns ETAs for all products offered at a
+     * given location, with the responses expressed as integers in seconds. We
+     * recommend that this endpoint be called every minute to provide the most
+     * accurate, up-to-date ETAs.
+     *
+     * @param    array    $attributes   Query attributes
+     *
+     * @return   stdClass               The JSON response from the request
+     */
+    public function getTimeEstimates($attributes = [])
+    {
+        return $this->request('get', 'estimates/time', $attributes);
+    }
+
+
+    /**
+     * The Request Estimate endpoint allows a ride to be estimated given the
+     * desired product, start, and end locations. If the end location is
+     * not provided, only the pickup ETA and details of surge pricing
+     * information are provided. If the pickup ETA is null, there are no cars
+     * available, but an estimate may still be given to the user.
+     *
+     * @param    array    $attributes   Query attributes
+     *
+     * @return   stdClass               The JSON response from the request
+     */
+    public function getRequestEstimate($attributes = [])
+    {
+        return $this->request('post', 'requests/estimate', $attributes);
+    }
+
+    /**
+     * The Products endpoint returns information about the Uber products
+     * offered at a given location. The response includes the display name and
+     * other details about each product, and lists the products in the proper
+     * display order.
+     *
+     * Some Products, such as experiments or promotions such as UberPOOL and
+     * UberFRESH, will not be returned by this endpoint.
+     *
+     * @param    array    $attributes   Query attributes
+     *
+     * @return   stdClass               The JSON response from the request
+     */
+    public function getProducts($attributes = [])
+    {
+        return $this->request('get', 'products', $attributes);
+    }
+
+
+
+
+    public function mixPriceTimeEstimates($times, $prices){
+        foreach($times->times as $time){
+            foreach ($prices->prices as $cab) {
+                if($time->product_id == $cab->product_id){
+                    $cab->time_estimate = $time->estimate;
+                }
+            }
+        }
+
+        return $prices;
+    }
+
      /**
      * Build url
      *
