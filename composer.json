@@ -1,7 +1,8 @@
 {
     "require": {
         "silex/silex": "1.*",
-        "monolog/monolog": "1.6.*"
+        "monolog/monolog": "1.6.*",
+        "guzzlehttp/guzzle":"@stable"
     },
     "require-dev" : {
         "phpunit/phpunit": "3.7.x",

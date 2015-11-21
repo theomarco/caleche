@@ -7,7 +7,7 @@ namespace Api\TestApi\Controllers;
 use Api\Application;
 use Api\Controller;
 
-class UserController extends Controller
+class CalecheController extends Controller
 {
 
     public function all(Application $app)
