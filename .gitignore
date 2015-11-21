@@ -1,0 +1,7 @@
+/temp
+/vendor
+.DS_Store
+/build
+*.log
+node_modules
+composer.phar
