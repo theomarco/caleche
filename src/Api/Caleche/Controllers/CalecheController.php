@@ -83,18 +83,46 @@ class CalecheController extends Controller
         $taxicode = $taxicode_client->getBookingQuote($taxicode_location);
 
         //var_dump($taxicode);
-        $response =[];
-        $response['uber'] = $uber;
-        $response['taxicode'] = $taxicode;
-        $response['hailo'] = $hailo;
+        $response = array_merge($uber, $taxicode, $hailo);
+        usort($response, array($this, "price_sort"));
+        $price_sorted = $response;
+        usort($response, array($this, "time_sort"));
+        $time_sorted = $response;
 
-        return $app->json($response);
+        //HAAAACK! CHANGE!!!
+        $results['cheapest'] = isset($price_sorted[0]->price) ? $price_sorted[0] : $price_sorted[1] ;
+        $results['closest'] = isset($time_sorted[0]->eta) ? $time_sorted[0] : $time_sorted[1] ;
+        $results['others'] = array_slice($price_sorted, 1);
+
+        return $app->json($results);
     }
 
-    public function get(Application $app, $id)
-    {
-        return $app->json(array('id' => (int)$id, 'name' => 'gumby'.$id));
+    public function price_sort($a, $b)
+        {
+        if ($a->price > $b->price) {
+            return 1;
+        } else if ($a->price < $b->price) {
+            return -1;
+        } else {
+            return 99; 
+        }
     }
+
+
+    public function time_sort($a, $b)
+        {
+            if ($a->eta > $b->eta) {
+                return 1;
+            } else if ($a->eta < $b->eta) {
+                return -1;
+            } else {
+                return 0; 
+            }
+        }
+
+
+
+
 
 
 

@@ -8,6 +8,7 @@ namespace Api\Caleche\Partners;
 use Api\Application;
 use GuzzleHttp\Client as HttpClient;
 
+
 class TaxiCodeClient
 {
 
@@ -35,7 +36,16 @@ class TaxiCodeClient
      */
     public function getBookingQuote($location)
     {
-        return $this->request('get', 'booking/quote/', $location);
+        $results =  $this->request('get', 'booking/quote/', $location);
+
+        $result_quotes = [];
+
+        foreach ($results->quotes as $quote) {
+        	$quote->type="taxicode";
+        	$quote->eta = 60;
+        	$result_quotes [] = $quote;
+        }
+        return $result_quotes;
     }
 
 

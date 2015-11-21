@@ -106,8 +106,9 @@ class UberClient
         foreach($times->times as $time){
             foreach ($prices->prices as $cab) {
                 if($time->product_id == $cab->product_id){
-                    $cab->time_estimate = $time->estimate;
+                    $cab->eta = round($time->estimate/60);
                     $cab->type = 'uber';
+                    $cab->price = ($cab->high_estimate + $cab->minimum)/2;
                 }
             }
         }
