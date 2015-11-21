@@ -28,7 +28,6 @@ if ($envMode = getenv('APP_ENV')) {
 }
 
 	//Config for Uber
-	$uberConfig['access_token'] = getenv('Uber_Access_Token');
     $uberConfig['server_token'] = getenv('Uber_Server_Token');
     $uberConfig['client_id'] = getenv('Uber_Client_Id');
     $uberConfig['app_id'] = getenv('Uber_App_Id');

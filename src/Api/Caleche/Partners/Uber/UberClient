@@ -25,7 +25,6 @@ class UberClient
 
     public function __construct($config){
 
-        $this->access_token = $config['access_token'];
         $this->server_token = $config['server_token'];
         $this->client_id = $config['client_id'];
         $this->app_id = $config['app_id'];
