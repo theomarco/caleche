@@ -110,7 +110,7 @@ class HailoClient
             $response = $client->$verb($url, $config);
 
         } catch (HttpClientException $e) {
-            throw new Exception($e->getMessage());
+            throw new Exception("Hailo" . $e->getMessage());
         }
 
         return json_decode($response->getBody());

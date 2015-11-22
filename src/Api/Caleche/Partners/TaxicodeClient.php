@@ -84,7 +84,7 @@ class TaxiCodeClient
             $response = $client->$verb($url, $config);
 
         } catch (HttpClientException $e) {
-            throw new Exception($e->getMessage());
+            throw new Exception("Taxicode" . $e->getMessage());
         }
 
         return json_decode($response->getBody());
