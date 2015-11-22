@@ -53,8 +53,8 @@ class CalecheController extends Controller
             'end_latitude' => $data->end_latitude,
             'end_longitude'=> $data->end_longitude
         );
-
-        $citymapper = $citymapper_client->getTimeTravel($location);
+       // var_dump("Citymapper");
+        //$citymapper = $citymapper_client->getTimeTravel($location);
 
         //UBER
 
@@ -105,7 +105,7 @@ class CalecheController extends Controller
         $results['closest'] = isset($time_sorted[0]->eta) ? $time_sorted[0] : $time_sorted[1] ;
         $results['others_price'] = isset($price_sorted[0]->price)? array_slice($price_sorted, 1) : array_slice($price_sorted, 2);
         $results['others_time'] = isset($time_sorted[0]->price)? array_slice($time_sorted, 1) : array_slice($time_sorted, 2);
-        $results['citymapper'] = $citymapper;
+        //$results['citymapper'] = $citymapper;
 
         return $app->json($results);
     }
