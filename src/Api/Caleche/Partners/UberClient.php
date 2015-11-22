@@ -103,17 +103,20 @@ class UberClient
 
 
     public function mixPriceTimeEstimates($times, $prices){
+
+        $results = [];
         foreach($times->times as $time){
             foreach ($prices->prices as $cab) {
                 if($time->product_id == $cab->product_id){
                     $cab->eta = round($time->estimate/60);
                     $cab->type = 'uber';
                     $cab->price = ($cab->high_estimate + $cab->minimum)/2;
+                    $results [] = $cab;
                 }
             }
         }
 
-        return $prices->prices;
+        return $results;
     }
 
      /**
